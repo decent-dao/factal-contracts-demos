@@ -3,7 +3,7 @@
   "chainId": "5",
   "contracts": {
     "ConnectFour": {
-      "address": "0x47B7FC612f730A416dDAB9d32188049b5b7b407d",
+      "address": "0x2d02E6B69F02541dBA216b9AeF06414fC0F546C6",
       "abi": [
         {
           "inputs": [],
@@ -73,7 +73,7 @@
           "anonymous": false,
           "inputs": [
             {
-              "indexed": false,
+              "indexed": true,
               "internalType": "uint256",
               "name": "gameId",
               "type": "uint256"
@@ -194,7 +194,7 @@
       ]
     },
     "ConnectFourFactory": {
-      "address": "0x13d82D0687286D576D5a1d679316a48a5dAAe623",
+      "address": "0x351f986599d7d51174233A2818f1e42C053a62BD",
       "abi": [
         {
           "inputs": [
