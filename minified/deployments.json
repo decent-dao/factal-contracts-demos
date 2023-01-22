@@ -1,0 +1,277 @@
+{
+  "name": "goerli",
+  "chainId": "5",
+  "contracts": {
+    "ConnectFour": {
+      "address": "0x47B7FC612f730A416dDAB9d32188049b5b7b407d",
+      "abi": [
+        {
+          "inputs": [],
+          "name": "GameOver",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "InvalidSelection",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "NotYourTurn",
+          "type": "error"
+        },
+        {
+          "inputs": [],
+          "name": "SeasonOver",
+          "type": "error"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "gameId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "teamOne",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "teamTwo",
+              "type": "address"
+            }
+          ],
+          "name": "GameCreated",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "gameId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "winner",
+              "type": "address"
+            }
+          ],
+          "name": "GameFinished",
+          "type": "event"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "gameId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "team",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint8",
+              "name": "column",
+              "type": "uint8"
+            }
+          ],
+          "name": "TurnTaken",
+          "type": "event"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "opponent",
+              "type": "address"
+            }
+          ],
+          "name": "challenge",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "gameId",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "getGame",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "teamOne",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "teamTwo",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "winner",
+              "type": "address"
+            },
+            {
+              "internalType": "uint8",
+              "name": "turn",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint8",
+              "name": "_gameId",
+              "type": "uint8"
+            }
+          ],
+          "name": "getGameBoard",
+          "outputs": [
+            {
+              "internalType": "uint8[6][6]",
+              "name": "",
+              "type": "uint8[6][6]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint8",
+              "name": "_gameId",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "column",
+              "type": "uint8"
+            }
+          ],
+          "name": "makeMove",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ]
+    },
+    "ConnectFourFactory": {
+      "address": "0x13d82D0687286D576D5a1d679316a48a5dAAe623",
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "implAddress",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint8",
+              "name": "seasonId",
+              "type": "uint8"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "gameAddress",
+              "type": "address"
+            }
+          ],
+          "name": "NewConnectFourSeasonCreated",
+          "type": "event"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ],
+          "name": "connectFourGames",
+          "outputs": [
+            {
+              "internalType": "contract ConnectFour",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "deployNewSeason",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "getGames",
+          "outputs": [
+            {
+              "internalType": "contract ConnectFour[]",
+              "name": "",
+              "type": "address[]"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      ]
+    }
+  }
+}
