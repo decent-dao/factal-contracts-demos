@@ -137,17 +137,17 @@ contract ConnectFour {
 
     /// @notice checks square for team's chip
     /// @param _gameId id of game
-    /// @param column column selected for new chip
-    /// @param row row where new chip lands
+    /// @param firstIndex column selected for new chip
+    /// @param secondIndex row where new chip lands
     /// @param teamNum number assigned to team
     function checkSquare(
         uint8 _gameId,
-        uint8 column,
-        uint8 row,
+        uint8 firstIndex,
+        uint8 secondIndex,
         uint8 teamNum
     ) private view returns (bool) {
         uint8[6][6] storage board = getGame[_gameId].board;
-        return board[row][column] == teamNum;
+        return board[firstIndex][secondIndex] == teamNum;
     }
 
     /// @notice checks the horizontal win
@@ -165,7 +165,7 @@ contract ConnectFour {
 
         /// @dev checks to the right of new piece
         for (uint8 i = column + 1; i < 6 - column; i++) {
-            if (checkSquare(_gameId, i, row, teamNum)) {
+            if (checkSquare(_gameId, row, i, teamNum)) {
                 connectedPiecesCount++;
             } else {
                 break;
@@ -175,7 +175,7 @@ contract ConnectFour {
         if (column != 0) {
             uint8 columnIndex = column - 1;
             while (columnIndex >= 0) {
-                if (checkSquare(_gameId, columnIndex, row, teamNum)) {
+                if (checkSquare(_gameId, row, columnIndex, teamNum)) {
                     connectedPiecesCount++;
                 } else {
                     break;
@@ -205,7 +205,7 @@ contract ConnectFour {
 
         /// @dev checks rows above new piece
         for (uint8 i = row + 1; i < 6 - row; i++) {
-            if (checkSquare(_gameId, column, i, teamNum)) {
+            if (checkSquare(_gameId, i, column, teamNum)) {
                 connectedPiecesCount++;
             } else {
                 break;
@@ -215,7 +215,7 @@ contract ConnectFour {
         if (row != 0) {
             uint8 rowIndex = row - 1;
             while (rowIndex >= 0) {
-                if (checkSquare(_gameId, column, rowIndex, teamNum)) {
+                if (checkSquare(_gameId, rowIndex, column, teamNum)) {
                     connectedPiecesCount++;
                 } else {
                     break;
@@ -257,7 +257,7 @@ contract ConnectFour {
             uint8 rowIndex = row - 1;
             uint8 columnIndex = column - 1;
             while (rowIndex >= 0 && columnIndex >= 0) {
-                if (checkSquare(_gameId, columnIndex, rowIndex, teamNum)) {
+                if (checkSquare(_gameId, rowIndex, columnIndex, teamNum)) {
                     connectedPiecesCount++;
                 } else {
                     break;
@@ -291,7 +291,7 @@ contract ConnectFour {
             uint8 rowIndex = row - 1;
             uint8 columnIndex = column + 1;
             while (rowIndex >= 0 && columnIndex < 6) {
-                if (checkSquare(_gameId, columnIndex, rowIndex, teamNum)) {
+                if (checkSquare(_gameId, rowIndex, columnIndex, teamNum)) {
                     connectedPiecesCount++;
                 } else {
                     break;
@@ -310,7 +310,7 @@ contract ConnectFour {
             uint8 rowIndex = row + 1;
             uint8 columnIndex = column - 1;
             while (rowIndex < 6 && columnIndex >= 0) {
-                if (checkSquare(_gameId, columnIndex, rowIndex, teamNum)) {
+                if (checkSquare(_gameId, rowIndex, columnIndex, teamNum)) {
                     connectedPiecesCount++;
                 } else {
                     break;

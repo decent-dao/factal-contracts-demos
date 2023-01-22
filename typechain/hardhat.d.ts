@@ -13,55 +13,19 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "Battleship",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Battleship__factory>;
-    getContractFactory(
-      name: "BattleshipFactory",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BattleshipFactory__factory>;
-    getContractFactory(
       name: "ConnectFour",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ConnectFour__factory>;
-    getContractFactory(
-      name: "ConnectFour",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ConnectFour__factory>;
-    getContractFactory(
-      name: "ConnectFourFactory",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ConnectFourFactory__factory>;
     getContractFactory(
       name: "ConnectFourFactory",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ConnectFourFactory__factory>;
 
     getContractAt(
-      name: "Battleship",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Battleship>;
-    getContractAt(
-      name: "BattleshipFactory",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.BattleshipFactory>;
-    getContractAt(
       name: "ConnectFour",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.ConnectFour>;
-    getContractAt(
-      name: "ConnectFour",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ConnectFour>;
-    getContractAt(
-      name: "ConnectFourFactory",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ConnectFourFactory>;
     getContractAt(
       name: "ConnectFourFactory",
       address: string,
