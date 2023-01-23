@@ -3,7 +3,7 @@
   "chainId": "5",
   "contracts": {
     "ConnectFour": {
-      "address": "0x2d02E6B69F02541dBA216b9AeF06414fC0F546C6",
+      "address": "0xa617aB32023f83D214Ff613415a92Bb4734a9179",
       "abi": [
         {
           "inputs": [],
@@ -18,11 +18,6 @@
         {
           "inputs": [],
           "name": "NotYourTurn",
-          "type": "error"
-        },
-        {
-          "inputs": [],
-          "name": "SeasonOver",
           "type": "error"
         },
         {
@@ -189,86 +184,6 @@
           "name": "makeMove",
           "outputs": [],
           "stateMutability": "nonpayable",
-          "type": "function"
-        }
-      ]
-    },
-    "ConnectFourFactory": {
-      "address": "0x351f986599d7d51174233A2818f1e42C053a62BD",
-      "abi": [
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "implAddress",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint8",
-              "name": "seasonId",
-              "type": "uint8"
-            },
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "gameAddress",
-              "type": "address"
-            }
-          ],
-          "name": "NewConnectFourSeasonCreated",
-          "type": "event"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint8",
-              "name": "",
-              "type": "uint8"
-            }
-          ],
-          "name": "connectFourGames",
-          "outputs": [
-            {
-              "internalType": "contract ConnectFour",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "deployNewSeason",
-          "outputs": [
-            {
-              "internalType": "uint8",
-              "name": "",
-              "type": "uint8"
-            }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "getGames",
-          "outputs": [
-            {
-              "internalType": "contract ConnectFour[]",
-              "name": "",
-              "type": "address[]"
-            }
-          ],
-          "stateMutability": "view",
           "type": "function"
         }
       ]
