@@ -3,9 +3,8 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
 import { ethers } from "hardhat"
 import { expect } from "chai"
 import { BigNumber } from "ethers"
-import { ConnectFourFactory, ConnectFour, ConnectFour__factory, ConnectFourFactory__factory } from "../typechain"
+import { ConnectFour, ConnectFour__factory} from "../typechain"
 describe("ConnectFour", () => {
-  let connectFourFactory: ConnectFourFactory
   let [account1, account2, account3]: SignerWithAddress[] = []
 
   let [gameOneContractSignerOne, gameOneContractSignerTwo, gameOneContractSignerThree]: ConnectFour[] = []
@@ -14,18 +13,12 @@ describe("ConnectFour", () => {
     ;[account1, account2, account3] = await ethers.getSigners()
 
     // Deploys and initializes game with teams
-    const connectFourContractImpl = await new ConnectFour__factory(account1).deploy()
-    connectFourFactory = await new ConnectFourFactory__factory(account1).deploy(
-      connectFourContractImpl.address
-    )
-
-    const response = await (await connectFourFactory.deployNewSeason()).wait()
-    const [_, gameAddress] = response.events![0].args!
+    const connectFourContract = await new ConnectFour__factory(account1).deploy()
 
       ;[gameOneContractSignerOne, gameOneContractSignerTwo, gameOneContractSignerThree] = [
-        ConnectFour__factory.connect(gameAddress, account1),
-        ConnectFour__factory.connect(gameAddress, account2),
-        ConnectFour__factory.connect(gameAddress, account3),
+        connectFourContract.connect(account1),
+        connectFourContract.connect(account2),
+        connectFourContract.connect(account3),
       ]
   })
 

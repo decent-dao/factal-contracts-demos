@@ -9,7 +9,7 @@
     "compile": "npm run clean && hardhat compile",
     "deploy:connectFour:goerli": "pnpm run package:prep && hardhat deploy --network goerli --tags ConnectFour --export ./minified/deployments.json",
     "verify:goerli": "hardhat etherscan-verify --network goerli --solc-input",
-    "clean": "hardhat clean && rimraf dist",
+    "clean": "hardhat clean && rimraf dist && rimraf typechain",
     "package:prep": "pnpm run clean && pnpm run compile && tsc",
     "publish-packages": "pnpm run package:prep && pnpm publish --no-git-checks"
   },

@@ -8,10 +8,8 @@ contract ConnectFour {
     error InvalidSelection();
     /// @notice revert if game has been completed
     error GameOver();
-    /// @notice revert season is over (coming soon)
-    error SeasonOver();
-
     /// @notice emiited when game is created
+
     event GameCreated(uint gameId, address teamOne, address teamTwo);
     /// @notice emitted after turn is successfully taken
     event TurnTaken(uint indexed gameId, address team, uint8 column);
@@ -49,11 +47,6 @@ contract ConnectFour {
     /// @notice prevents gameplay if game is over
     modifier gameOver(uint _gameId) {
         if (getGame[_gameId].winner != address(0)) revert GameOver();
-        _;
-    }
-
-    /// @notice prevents new games when season is over. (coming soon)
-    modifier seasonOver() {
         _;
     }
 

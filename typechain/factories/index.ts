@@ -2,4 +2,3 @@
 /* tslint:disable */
 /* eslint-disable */
 export { ConnectFour__factory } from "./ConnectFour__factory";
-export { ConnectFourFactory__factory } from "./ConnectFourFactory__factory";
