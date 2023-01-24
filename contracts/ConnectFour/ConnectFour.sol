@@ -280,7 +280,7 @@ contract ConnectFour {
         uint connectedPiecesCount = 1;
 
         /// @dev checks backward angle down
-        if (row != 0 && column != 0) {
+        if (row != 0) {
             uint8 rowIndex = row - 1;
             uint8 columnIndex = column + 1;
             while (rowIndex >= 0 && columnIndex < 6) {
@@ -299,7 +299,7 @@ contract ConnectFour {
         }
 
         /// @dev checks forward angle down
-        if (row != 0 && column != 0) {
+        if (column != 0) {
             uint8 rowIndex = row + 1;
             uint8 columnIndex = column - 1;
             while (rowIndex < 6 && columnIndex >= 0) {

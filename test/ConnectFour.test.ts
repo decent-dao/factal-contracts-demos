@@ -183,6 +183,28 @@ describe("ConnectFour", () => {
         .to.emit(gameOneContractSignerOne, "GameFinished")
         .withArgs(connectFourGameOneId, account1.address)
     })
+    
+    it("Should end with backward angle win; team one; beta testing failure", async () => {
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await expect(gameOneContractSignerOne.makeMove(connectFourGameOneId, 0))
+        .to.emit(gameOneContractSignerOne, "GameFinished")
+        .withArgs(connectFourGameOneId, account1.address)
+    })
   })
   describe("Game Play | Revert", () => {
     let connectFourGameOneId: BigNumber = BigNumber.from(0);
