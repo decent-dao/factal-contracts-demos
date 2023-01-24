@@ -57,6 +57,20 @@ describe("ConnectFour", () => {
         .withArgs(connectFourGameOneId, account2.address)
     })
 
+    it("Should end with horizontal win; team two; testing failure case", async () => {
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3))
+        .to.emit(gameOneContractSignerTwo, "GameFinished")
+        .withArgs(connectFourGameOneId, account2.address)
+    })
+
     it("Should end with horizontal win; team two; long length game", async () => {
       await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
       await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)

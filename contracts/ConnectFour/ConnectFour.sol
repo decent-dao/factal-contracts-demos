@@ -157,7 +157,7 @@ contract ConnectFour {
         uint connectedPiecesCount = 1;
 
         /// @dev checks to the right of new piece
-        for (uint8 i = column + 1; i < 6 - column; i++) {
+        for (uint8 i = column + 1; i < 6; i++) {
             if (checkSquare(_gameId, row, i, teamNum)) {
                 connectedPiecesCount++;
             } else {
@@ -180,6 +180,7 @@ contract ConnectFour {
                 }
             }
         }
+
         return connectedPiecesCount;
     }
 
@@ -197,7 +198,7 @@ contract ConnectFour {
         uint connectedPiecesCount = 1;
 
         /// @dev checks rows above new piece
-        for (uint8 i = row + 1; i < 6 - row; i++) {
+        for (uint8 i = row + 1; i < 6; i++) {
             if (checkSquare(_gameId, i, column, teamNum)) {
                 connectedPiecesCount++;
             } else {
