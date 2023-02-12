@@ -316,6 +316,28 @@ describe("ConnectFour", () => {
         .to.emit(gameOneContractSignerOne, "GameFinished")
         .withArgs(connectFourGameOneId, account1.address)
     })
+
+    it("Should end with backward angle win; team one; short length game", async () => {
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 6)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
+
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await expect(gameOneContractSignerOne.makeMove(connectFourGameOneId, 3))
+        .to.emit(gameOneContractSignerOne, "GameFinished")
+        .withArgs(connectFourGameOneId, account1.address)
+    })
     
     it("Should end with backward angle win; team one; beta testing failure", async () => {
       await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)

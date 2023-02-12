@@ -284,7 +284,7 @@ contract ConnectFour {
         if (row != 0) {
             uint8 rowIndex = row - 1;
             uint8 columnIndex = column + 1;
-            while (rowIndex >= 0 && columnIndex < 6) {
+            while (rowIndex >= 0 && columnIndex < 7) {
                 if (checkSquare(_gameId, rowIndex, columnIndex, teamNum)) {
                     connectedPiecesCount++;
                 } else {
