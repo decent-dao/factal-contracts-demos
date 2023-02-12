@@ -3,7 +3,7 @@
   "chainId": "5",
   "contracts": {
     "ConnectFour": {
-      "address": "0x399d76Dbc75894b555395a0fCD546A74205EBC9E",
+      "address": "0x3664B997f3EECC7AadA65F7A1f883cdC4BcD851b",
       "abi": [
         {
           "inputs": [],
