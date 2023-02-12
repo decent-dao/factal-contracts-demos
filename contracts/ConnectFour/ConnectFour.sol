@@ -27,7 +27,7 @@ contract ConnectFour {
         address teamTwo;
         address winner;
         uint8 turn;
-        uint8[6][6] board;
+        uint8[7][6] board;
     }
 
     /// @notice Used as a counter for the next game index.
@@ -40,7 +40,7 @@ contract ConnectFour {
 
     /// @notice prevent move if column is invalid
     modifier validColumn(uint8 column) {
-        if (column > 5) revert InvalidSelection();
+        if (column > 6) revert InvalidSelection();
         _;
     }
 
@@ -64,7 +64,7 @@ contract ConnectFour {
      * @dev season is over when timer (soon to be added) is past
      */
     function challenge(address opponent) public uniqueTeams(opponent) {
-        uint8[6][6] memory newBoard;
+        uint8[7][6] memory newBoard;
         Game memory newGame = Game({
             teamOne: msg.sender,
             teamTwo: opponent,
@@ -139,7 +139,7 @@ contract ConnectFour {
         uint8 secondIndex,
         uint8 teamNum
     ) private view returns (bool) {
-        uint8[6][6] storage board = getGame[_gameId].board;
+        uint8[7][6] storage board = getGame[_gameId].board;
         return board[firstIndex][secondIndex] == teamNum;
     }
 
@@ -157,7 +157,7 @@ contract ConnectFour {
         uint connectedPiecesCount = 1;
 
         /// @dev checks to the right of new piece
-        for (uint8 i = column + 1; i < 6; i++) {
+        for (uint8 i = column + 1; i < 7; i++) {
             if (checkSquare(_gameId, row, i, teamNum)) {
                 connectedPiecesCount++;
             } else {
@@ -367,7 +367,7 @@ contract ConnectFour {
 
     function getGameBoard(
         uint8 _gameId
-    ) public view returns (uint8[6][6] memory) {
+    ) public view returns (uint8[7][6] memory) {
         return getGame[_gameId].board;
     }
 }
