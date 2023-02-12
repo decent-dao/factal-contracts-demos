@@ -3,7 +3,7 @@
   "chainId": "5",
   "contracts": {
     "ConnectFour": {
-      "address": "0x0DC9118ba648d49aE786f656883B56975F8Bb52A",
+      "address": "0x399d76Dbc75894b555395a0fCD546A74205EBC9E",
       "abi": [
         {
           "inputs": [],
@@ -160,9 +160,9 @@
           "name": "getGameBoard",
           "outputs": [
             {
-              "internalType": "uint8[6][6]",
+              "internalType": "uint8[7][6]",
               "name": "",
-              "type": "uint8[6][6]"
+              "type": "uint8[7][6]"
             }
           ],
           "stateMutability": "view",
