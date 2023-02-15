@@ -38,6 +38,9 @@ contract ConnectFour {
     /// @dev This automatically generates a getter for us, which will return `Game.player1`, `Game.player2`, `Game.moves`, and `Game.finished` (the arrays are skipped)
     mapping(uint => Game) public getGame;
 
+    /// @notice An index of address to gameId
+    mapping(address => uint) public getGameIdFromAddress;
+
     /// @notice prevent move if column is invalid
     modifier validColumn(uint8 column) {
         if (column > 6) revert InvalidSelection();
@@ -64,6 +67,9 @@ contract ConnectFour {
      * @dev season is over when timer (soon to be added) is past
      */
     function challenge(address opponent) public uniqueTeams(opponent) {
+        require(getGameIdFromAddress[msg.sender] == 0, "Already playing.");
+        require(getGameIdFromAddress[opponent] == 0, "Opponent is already playing.");
+
         uint8[7][6] memory newBoard;
         Game memory newGame = Game({
             teamOne: msg.sender,
@@ -73,6 +79,7 @@ contract ConnectFour {
             board: newBoard
         });
         getGame[gameId] = newGame;
+        setGameIdFromAddress(newGame, gameId);
 
         emit GameCreated(gameId, msg.sender, opponent);
 
@@ -87,7 +94,7 @@ contract ConnectFour {
     function makeMove(
         uint8 _gameId,
         uint8 column
-    ) external gameOver(_gameId) validColumn(column) {
+    ) public gameOver(_gameId) validColumn(column) {
         Game storage game = getGame[_gameId];
 
         /// @notice row where chip will land
@@ -124,8 +131,23 @@ contract ConnectFour {
         /// @notice checks surrounding squares for connected pieces
         if (didPlayerWin(_gameId, column, row, teamNum)) {
             game.winner = msg.sender;
+            setGameIdFromAddress(game, 0);
             emit GameFinished(_gameId, msg.sender);
         }
+    }
+
+    /**
+     * @notice caller plays a turn in their current game
+     * @param _column selected column for move
+     */
+    function makeMove(uint8 _column) external {
+        uint id = getGameIdFromAddress[msg.sender];
+        makeMove(uint8(id), _column);
+    }
+
+    function setGameIdFromAddress(Game memory _game, uint _gameId) private {
+        getGameIdFromAddress[_game.teamOne] = _gameId;
+        getGameIdFromAddress[_game.teamTwo] = _gameId;
     }
 
     /// @notice checks square for team's chip
