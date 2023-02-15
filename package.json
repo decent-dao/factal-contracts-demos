@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/decent-dao/fractal-contracts-demos"
+    "url": "git+https://github.com/decent-dao/fractal-demos-contracts"
   },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
