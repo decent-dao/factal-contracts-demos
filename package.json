@@ -11,7 +11,7 @@
     "verify:goerli": "hardhat etherscan-verify --network goerli --solc-input",
     "clean": "hardhat clean && rimraf dist && rimraf typechain",
     "package:prep": "pnpm run clean && pnpm run compile && tsc",
-    "publish-packages": "pnpm run package:prep && pnpm publish --no-git-checks"
+    "publish-packages": "pnpm run package:prep && pnpm publish --no-git-checks --access public"
   },
   "files": [
     "./dist",
