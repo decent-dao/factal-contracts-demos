@@ -142,6 +142,7 @@ contract ConnectFour {
      */
     function makeMove(uint8 _column) external {
         uint id = getGameIdFromAddress[msg.sender];
+        require(id != 0, "Not currently playing.");
         makeMove(uint8(id), _column);
     }
 
