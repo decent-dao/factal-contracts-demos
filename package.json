@@ -1,5 +1,5 @@
 {
-  "name": "fractal-contracts-demos",
+  "name": "@fractal-framework/fractal-contracts-demos",
   "version": "0.1.10",
   "description": "EVM contracts written in Solidity",
   "author": "David A Colon",
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/curiousity-labs/b3-curious-games.git"
+    "url": "git+https://github.com/decent-dao/fractal-contracts-demos"
   },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
