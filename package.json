@@ -1,5 +1,5 @@
 {
-  "name": "@fractal-framework/fractal-contracts-demos",
+  "name": "@fractal-framework/fractal-demos-contracts",
   "version": "0.1.10",
   "description": "EVM contracts written in Solidity",
   "author": "David A Colon",
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/decent-dao/fractal-contracts-demos"
+    "url": "git+https://github.com/decent-dao/fractal-demos-contracts"
   },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
