@@ -91,7 +91,7 @@ contract ConnectFour {
      * @param _gameId id of game
      * @param column selected column for move
      */
-    function makeMove(
+    function makeMoveById(
         uint8 _gameId,
         uint8 column
     ) public gameOver(_gameId) validColumn(column) {
@@ -143,7 +143,7 @@ contract ConnectFour {
     function makeMove(uint8 _column) external {
         uint id = getGameIdFromAddress[msg.sender];
         require(id != 0, "Not currently playing.");
-        makeMove(uint8(id), _column);
+        makeMoveById(uint8(id), _column);
     }
 
     function setGameIdFromAddress(Game memory _game, uint _gameId) private {

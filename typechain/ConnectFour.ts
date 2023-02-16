@@ -33,7 +33,9 @@ export interface ConnectFourInterface extends utils.Interface {
     "gameId()": FunctionFragment;
     "getGame(uint256)": FunctionFragment;
     "getGameBoard(uint8)": FunctionFragment;
-    "makeMove(uint8,uint8)": FunctionFragment;
+    "getGameIdFromAddress(address)": FunctionFragment;
+    "makeMove(uint8)": FunctionFragment;
+    "makeMoveById(uint8,uint8)": FunctionFragment;
   };
 
   getFunction(
@@ -42,7 +44,9 @@ export interface ConnectFourInterface extends utils.Interface {
       | "gameId"
       | "getGame"
       | "getGameBoard"
+      | "getGameIdFromAddress"
       | "makeMove"
+      | "makeMoveById"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -59,7 +63,15 @@ export interface ConnectFourInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
+    functionFragment: "getGameIdFromAddress",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "makeMove",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "makeMoveById",
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
   ): string;
 
@@ -70,7 +82,15 @@ export interface ConnectFourInterface extends utils.Interface {
     functionFragment: "getGameBoard",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "getGameIdFromAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "makeMove", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "makeMoveById",
+    data: BytesLike
+  ): Result;
 
   events: {
     "GameCreated(uint256,address,address)": EventFragment;
@@ -169,7 +189,17 @@ export interface ConnectFour extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[number[][]]>;
 
+    getGameIdFromAddress(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
     makeMove(
+      _column: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    makeMoveById(
       _gameId: PromiseOrValue<BigNumberish>,
       column: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -200,7 +230,17 @@ export interface ConnectFour extends BaseContract {
     overrides?: CallOverrides
   ): Promise<number[][]>;
 
+  getGameIdFromAddress(
+    arg0: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
   makeMove(
+    _column: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  makeMoveById(
     _gameId: PromiseOrValue<BigNumberish>,
     column: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -231,7 +271,17 @@ export interface ConnectFour extends BaseContract {
       overrides?: CallOverrides
     ): Promise<number[][]>;
 
+    getGameIdFromAddress(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     makeMove(
+      _column: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    makeMoveById(
       _gameId: PromiseOrValue<BigNumberish>,
       column: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -286,7 +336,17 @@ export interface ConnectFour extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    getGameIdFromAddress(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     makeMove(
+      _column: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    makeMoveById(
       _gameId: PromiseOrValue<BigNumberish>,
       column: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -311,7 +371,17 @@ export interface ConnectFour extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    getGameIdFromAddress(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     makeMove(
+      _column: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    makeMoveById(
       _gameId: PromiseOrValue<BigNumberish>,
       column: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
