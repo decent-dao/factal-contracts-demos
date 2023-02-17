@@ -26,7 +26,7 @@ describe("ConnectFour", () => {
     it("Should create game", async () => {
       await expect(gameOneContractSignerOne.challenge(account2.address))
         .to.emit(gameOneContractSignerOne, "GameCreated")
-        .withArgs(0, account1.address, account2.address)
+        .withArgs(1, account1.address, account2.address)
     })
   })
   describe("Game Play | Success", () => {
