@@ -3,7 +3,7 @@
   "chainId": "5",
   "contracts": {
     "ConnectFour": {
-      "address": "0x49e5f311E4D274C510c6b73E8CF0243b7F97BED6",
+      "address": "0x6a6025BF7843684fd6e6d857abe849dC1c257D81",
       "abi": [
         {
           "inputs": [],
@@ -88,6 +88,13 @@
           ],
           "name": "TurnTaken",
           "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "abandonCurrentGame",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
         },
         {
           "inputs": [
@@ -190,9 +197,9 @@
         {
           "inputs": [
             {
-              "internalType": "uint8",
-              "name": "_column",
-              "type": "uint8"
+              "internalType": "uint256",
+              "name": "_columnNumber",
+              "type": "uint256"
             }
           ],
           "name": "makeMove",
@@ -209,7 +216,7 @@
             },
             {
               "internalType": "uint8",
-              "name": "column",
+              "name": "columnIndex",
               "type": "uint8"
             }
           ],

@@ -29,17 +29,19 @@ import type {
 
 export interface ConnectFourInterface extends utils.Interface {
   functions: {
+    "abandonCurrentGame()": FunctionFragment;
     "challenge(address)": FunctionFragment;
     "gameId()": FunctionFragment;
     "getGame(uint256)": FunctionFragment;
     "getGameBoard(uint8)": FunctionFragment;
     "getGameIdFromAddress(address)": FunctionFragment;
-    "makeMove(uint8)": FunctionFragment;
+    "makeMove(uint256)": FunctionFragment;
     "makeMoveById(uint8,uint8)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "abandonCurrentGame"
       | "challenge"
       | "gameId"
       | "getGame"
@@ -49,6 +51,10 @@ export interface ConnectFourInterface extends utils.Interface {
       | "makeMoveById"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "abandonCurrentGame",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "challenge",
     values: [PromiseOrValue<string>]
@@ -75,6 +81,10 @@ export interface ConnectFourInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
   ): string;
 
+  decodeFunctionResult(
+    functionFragment: "abandonCurrentGame",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "challenge", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "gameId", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getGame", data: BytesLike): Result;
@@ -165,6 +175,10 @@ export interface ConnectFour extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    abandonCurrentGame(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     challenge(
       opponent: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -195,16 +209,20 @@ export interface ConnectFour extends BaseContract {
     ): Promise<[BigNumber]>;
 
     makeMove(
-      _column: PromiseOrValue<BigNumberish>,
+      _columnNumber: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     makeMoveById(
       _gameId: PromiseOrValue<BigNumberish>,
-      column: PromiseOrValue<BigNumberish>,
+      columnIndex: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
+
+  abandonCurrentGame(
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
 
   challenge(
     opponent: PromiseOrValue<string>,
@@ -236,17 +254,19 @@ export interface ConnectFour extends BaseContract {
   ): Promise<BigNumber>;
 
   makeMove(
-    _column: PromiseOrValue<BigNumberish>,
+    _columnNumber: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   makeMoveById(
     _gameId: PromiseOrValue<BigNumberish>,
-    column: PromiseOrValue<BigNumberish>,
+    columnIndex: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    abandonCurrentGame(overrides?: CallOverrides): Promise<void>;
+
     challenge(
       opponent: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -277,13 +297,13 @@ export interface ConnectFour extends BaseContract {
     ): Promise<BigNumber>;
 
     makeMove(
-      _column: PromiseOrValue<BigNumberish>,
+      _columnNumber: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     makeMoveById(
       _gameId: PromiseOrValue<BigNumberish>,
-      column: PromiseOrValue<BigNumberish>,
+      columnIndex: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -319,6 +339,10 @@ export interface ConnectFour extends BaseContract {
   };
 
   estimateGas: {
+    abandonCurrentGame(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     challenge(
       opponent: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -342,18 +366,22 @@ export interface ConnectFour extends BaseContract {
     ): Promise<BigNumber>;
 
     makeMove(
-      _column: PromiseOrValue<BigNumberish>,
+      _columnNumber: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     makeMoveById(
       _gameId: PromiseOrValue<BigNumberish>,
-      column: PromiseOrValue<BigNumberish>,
+      columnIndex: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
+    abandonCurrentGame(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
     challenge(
       opponent: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -377,13 +405,13 @@ export interface ConnectFour extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     makeMove(
-      _column: PromiseOrValue<BigNumberish>,
+      _columnNumber: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     makeMoveById(
       _gameId: PromiseOrValue<BigNumberish>,
-      column: PromiseOrValue<BigNumberish>,
+      columnIndex: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };
