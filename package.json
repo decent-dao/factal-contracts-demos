@@ -1,6 +1,6 @@
 {
   "name": "@fractal-framework/fractal-demos-contracts",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "EVM contracts written in Solidity",
   "author": "David A Colon",
   "license": "MIT",
