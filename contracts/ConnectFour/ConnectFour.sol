@@ -31,8 +31,8 @@ contract ConnectFour {
     }
 
     /// @notice Used as a counter for the next game index.
-    /// @dev Initialised at 1 because it makes the first transaction slightly cheaper.
-    uint public gameId;
+    /// @dev Initialised at 1 because getGameIdFromAddress initializes mappings to 0.
+    uint public gameId = 1;
 
     /// @notice An indexed list of games
     /// @dev This automatically generates a getter for us, which will return `Game.player1`, `Game.player2`, `Game.moves`, and `Game.finished` (the arrays are skipped)
@@ -66,7 +66,7 @@ contract ConnectFour {
      * @dev game id is increated each time a new game is created
      * @dev season is over when timer (soon to be added) is past
      */
-    function challenge(address opponent) public uniqueTeams(opponent) {
+    function challenge(address opponent) external uniqueTeams(opponent) {
         require(getGameIdFromAddress[msg.sender] == 0, "Already playing.");
         require(getGameIdFromAddress[opponent] == 0, "Opponent is already playing.");
 
@@ -87,14 +87,25 @@ contract ConnectFour {
     }
 
     /**
+     * Abandons the singleton game of msg.sender, if it exists.
+     * The game will still continue to be playable via makeMoveById,
+     * just not makeMove.
+     */
+    function abandonCurrentGame() external {
+        uint id = getGameIdFromAddress[msg.sender];
+        require(id != 0, "Not currently playing.");
+        setGameIdFromAddress(getGame[id], 0);
+    }
+
+    /**
      * @notice current team plays a turn
      * @param _gameId id of game
-     * @param column selected column for move
+     * @param columnIndex selected column for move, starting at 0
      */
     function makeMoveById(
         uint8 _gameId,
-        uint8 column
-    ) public gameOver(_gameId) validColumn(column) {
+        uint8 columnIndex
+    ) public gameOver(_gameId) validColumn(columnIndex) {
         Game storage game = getGame[_gameId];
 
         /// @notice row where chip will land
@@ -114,7 +125,7 @@ contract ConnectFour {
             if (i > 5) {
                 revert InvalidSelection();
             }
-            uint8 square = game.board[i][column];
+            uint8 square = game.board[i][columnIndex];
             if (square == 0) {
                 row = i++;
                 break;
@@ -122,14 +133,14 @@ contract ConnectFour {
         }
 
         /// @notice assigns chip to location onboard
-        game.board[row][column] = teamNum;
+        game.board[row][columnIndex] = teamNum;
         /// @notice increments turn
         game.turn++;
 
-        emit TurnTaken(_gameId, msg.sender, column);
+        emit TurnTaken(_gameId, msg.sender, columnIndex);
 
         /// @notice checks surrounding squares for connected pieces
-        if (didPlayerWin(_gameId, column, row, teamNum)) {
+        if (didPlayerWin(_gameId, columnIndex, row, teamNum)) {
             game.winner = msg.sender;
             setGameIdFromAddress(game, 0);
             emit GameFinished(_gameId, msg.sender);
@@ -138,12 +149,12 @@ contract ConnectFour {
 
     /**
      * @notice caller plays a turn in their current game
-     * @param _column selected column for move
+     * @param _columnNumber selected column for move, starting at 1
      */
-    function makeMove(uint8 _column) external {
+    function makeMove(uint _columnNumber) external {
         uint id = getGameIdFromAddress[msg.sender];
         require(id != 0, "Not currently playing.");
-        makeMoveById(uint8(id), _column);
+        makeMoveById(uint8(id), uint8(_columnNumber - 1));
     }
 
     function setGameIdFromAddress(Game memory _game, uint _gameId) private {
@@ -171,7 +182,7 @@ contract ConnectFour {
     /// @param column column selected for new chip
     /// @param row row where new chip lands
     /// @param teamNum number assigned to team
-    function checkHorizonalWin(
+    function checkHorizontalWin(
         uint8 _gameId,
         uint8 column,
         uint8 row,
@@ -212,7 +223,7 @@ contract ConnectFour {
     /// @param column column selected for new chip
     /// @param row row where new chip lands
     /// @param teamNum number assigned to team
-    function checkVericalWin(
+    function checkVerticalWin(
         uint8 _gameId,
         uint8 column,
         uint8 row,
@@ -359,11 +370,11 @@ contract ConnectFour {
         /// @dev [ [    R-1    ] [ C | R ] [    R+1    ]
         /// @dev [ [ C-1 | R-1 ] [  C-1  ] [ C-1 | R+1 ] ]
 
-        uint horionalCount = checkHorizonalWin(_gameId, column, row, teamNum);
+        uint horionalCount = checkHorizontalWin(_gameId, column, row, teamNum);
         if (horionalCount == 4) {
             return true;
         }
-        uint vericalCount = checkVericalWin(_gameId, column, row, teamNum);
+        uint vericalCount = checkVerticalWin(_gameId, column, row, teamNum);
         if (vericalCount == 4) {
             return true;
         }
