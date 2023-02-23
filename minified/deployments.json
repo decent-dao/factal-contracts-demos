@@ -3,7 +3,7 @@
   "chainId": "5",
   "contracts": {
     "ConnectFour": {
-      "address": "0x6a6025BF7843684fd6e6d857abe849dC1c257D81",
+      "address": "0x052f5267E37c0AD73bd3cA6c4cdBb39b9F4FE7B1",
       "abi": [
         {
           "inputs": [],
@@ -197,19 +197,6 @@
         {
           "inputs": [
             {
-              "internalType": "uint256",
-              "name": "_columnNumber",
-              "type": "uint256"
-            }
-          ],
-          "name": "makeMove",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
               "internalType": "uint8",
               "name": "_gameId",
               "type": "uint8"
@@ -220,7 +207,20 @@
               "type": "uint8"
             }
           ],
-          "name": "makeMoveById",
+          "name": "makeMove",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_columnNumber",
+              "type": "uint256"
+            }
+          ],
+          "name": "move",
           "outputs": [],
           "stateMutability": "nonpayable",
           "type": "function"

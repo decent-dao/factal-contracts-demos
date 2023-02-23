@@ -37,326 +37,326 @@ describe("ConnectFour", () => {
     })
 
     it("Should play first move", async () => {
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0))
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0))
         .to.emit(gameOneContractSignerTwo, "TurnTaken")
         .withArgs(connectFourGameOneId, account2.address, 0)
     })
 
     it("Should end with horizontal win; team two; short length game", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3))
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3))
         .to.emit(gameOneContractSignerTwo, "GameFinished")
         .withArgs(connectFourGameOneId, account2.address)
     })
 
     it("Should end with horizontal win; team two; testing failure case", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3))
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3))
         .to.emit(gameOneContractSignerTwo, "GameFinished")
         .withArgs(connectFourGameOneId, account2.address)
     })
 
     it("Should end with horizontal win; team two; testing failure case; new column", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 6)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 6)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4))
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4))
         .to.emit(gameOneContractSignerTwo, "GameFinished")
         .withArgs(connectFourGameOneId, account2.address)
     })
 
     it("Should end with horizontal win; team two; long length game", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
       
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
       
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
       
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
       
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3))
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3))
         .to.emit(gameOneContractSignerTwo, "GameFinished")
         .withArgs(connectFourGameOneId, account2.address)
     })
 
     it("Should end with horizontal win; team two; long length game; new column", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 6)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 6)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 6)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 6)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
       
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
       
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 6)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 6)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 6)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 6)
       
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
       
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4))
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4))
         .to.emit(gameOneContractSignerTwo, "GameFinished")
         .withArgs(connectFourGameOneId, account2.address)
     })
 
     it("Should end with veritical win; team one; med length game", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await expect(gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4))
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await expect(gameOneContractSignerOne.makeMove(connectFourGameOneId, 4))
         .to.emit(gameOneContractSignerOne, "GameFinished")
         .withArgs(connectFourGameOneId, account1.address)
     })
 
     it("Should end with veritical win; team one; med length game: new column", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 6)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 6)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 6)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 6)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 6)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 6)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await expect(gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5))
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await expect(gameOneContractSignerOne.makeMove(connectFourGameOneId, 5))
         .to.emit(gameOneContractSignerOne, "GameFinished")
         .withArgs(connectFourGameOneId, account1.address)
     })
 
     it("Should end with forward angle win; team two; short length game", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4))
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4))
         .to.emit(gameOneContractSignerTwo, "GameFinished")
         .withArgs(connectFourGameOneId, account2.address)
     })
 
     it("Should end with forward angle win; team two; short length game; new column", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 6)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 6)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 6)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 6)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 6)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 6)
 
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 6))
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 6))
         .to.emit(gameOneContractSignerTwo, "GameFinished")
         .withArgs(connectFourGameOneId, account2.address)
     })
 
     it("Should end with backward angle win; team one; short length game", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await expect(gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1))
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await expect(gameOneContractSignerOne.makeMove(connectFourGameOneId, 1))
         .to.emit(gameOneContractSignerOne, "GameFinished")
         .withArgs(connectFourGameOneId, account1.address)
     })
 
     it("Should end with backward angle win; team one; short length game", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 6)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 6)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 4)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 5)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 4)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 5)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 4)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 4)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await expect(gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3))
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await expect(gameOneContractSignerOne.makeMove(connectFourGameOneId, 3))
         .to.emit(gameOneContractSignerOne, "GameFinished")
         .withArgs(connectFourGameOneId, account1.address)
     })
     
     it("Should end with backward angle win; team one; beta testing failure", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 3)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 3)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 1)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 1)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 2)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 2)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 1)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 3)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 2)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 3)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 2)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 5)
-      await expect(gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0))
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 5)
+      await expect(gameOneContractSignerOne.makeMove(connectFourGameOneId, 0))
         .to.emit(gameOneContractSignerOne, "GameFinished")
         .withArgs(connectFourGameOneId, account1.address)
     })
@@ -369,28 +369,28 @@ describe("ConnectFour", () => {
     })
 
     it("Should prevent team one from going first", async () => {
-      await expect(gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 1))
+      await expect(gameOneContractSignerOne.makeMove(connectFourGameOneId, 1))
         .to.revertedWithCustomError(gameOneContractSignerOne, "NotYourTurn")
     })
 
     it("Should prevent random address from playing", async () => {
-      await expect(gameOneContractSignerThree.makeMoveById(connectFourGameOneId, 1))
+      await expect(gameOneContractSignerThree.makeMove(connectFourGameOneId, 1))
         .to.revertedWithCustomError(gameOneContractSignerThree, "NotYourTurn")
     })
     it("Should revert if invalid column", async () => {
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 7))
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 7))
         .to.revertedWithCustomError(gameOneContractSignerTwo, "InvalidSelection")
     })
     it("Should revert if row is exceeded", async () => {
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
 
-      await gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0)
-      await gameOneContractSignerOne.makeMoveById(connectFourGameOneId, 0)
-      await expect(gameOneContractSignerTwo.makeMoveById(connectFourGameOneId, 0))
+      await gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0)
+      await gameOneContractSignerOne.makeMove(connectFourGameOneId, 0)
+      await expect(gameOneContractSignerTwo.makeMove(connectFourGameOneId, 0))
         .to.revertedWithCustomError(gameOneContractSignerTwo, "InvalidSelection")
     })
   })

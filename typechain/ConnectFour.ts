@@ -35,8 +35,8 @@ export interface ConnectFourInterface extends utils.Interface {
     "getGame(uint256)": FunctionFragment;
     "getGameBoard(uint8)": FunctionFragment;
     "getGameIdFromAddress(address)": FunctionFragment;
-    "makeMove(uint256)": FunctionFragment;
-    "makeMoveById(uint8,uint8)": FunctionFragment;
+    "makeMove(uint8,uint8)": FunctionFragment;
+    "move(uint256)": FunctionFragment;
   };
 
   getFunction(
@@ -48,7 +48,7 @@ export interface ConnectFourInterface extends utils.Interface {
       | "getGameBoard"
       | "getGameIdFromAddress"
       | "makeMove"
-      | "makeMoveById"
+      | "move"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -74,11 +74,11 @@ export interface ConnectFourInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "makeMove",
-    values: [PromiseOrValue<BigNumberish>]
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "makeMoveById",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    functionFragment: "move",
+    values: [PromiseOrValue<BigNumberish>]
   ): string;
 
   decodeFunctionResult(
@@ -97,10 +97,7 @@ export interface ConnectFourInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "makeMove", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "makeMoveById",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "move", data: BytesLike): Result;
 
   events: {
     "GameCreated(uint256,address,address)": EventFragment;
@@ -209,13 +206,13 @@ export interface ConnectFour extends BaseContract {
     ): Promise<[BigNumber]>;
 
     makeMove(
-      _columnNumber: PromiseOrValue<BigNumberish>,
+      _gameId: PromiseOrValue<BigNumberish>,
+      columnIndex: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    makeMoveById(
-      _gameId: PromiseOrValue<BigNumberish>,
-      columnIndex: PromiseOrValue<BigNumberish>,
+    move(
+      _columnNumber: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
@@ -254,13 +251,13 @@ export interface ConnectFour extends BaseContract {
   ): Promise<BigNumber>;
 
   makeMove(
-    _columnNumber: PromiseOrValue<BigNumberish>,
+    _gameId: PromiseOrValue<BigNumberish>,
+    columnIndex: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  makeMoveById(
-    _gameId: PromiseOrValue<BigNumberish>,
-    columnIndex: PromiseOrValue<BigNumberish>,
+  move(
+    _columnNumber: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -297,13 +294,13 @@ export interface ConnectFour extends BaseContract {
     ): Promise<BigNumber>;
 
     makeMove(
-      _columnNumber: PromiseOrValue<BigNumberish>,
+      _gameId: PromiseOrValue<BigNumberish>,
+      columnIndex: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    makeMoveById(
-      _gameId: PromiseOrValue<BigNumberish>,
-      columnIndex: PromiseOrValue<BigNumberish>,
+    move(
+      _columnNumber: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -366,13 +363,13 @@ export interface ConnectFour extends BaseContract {
     ): Promise<BigNumber>;
 
     makeMove(
-      _columnNumber: PromiseOrValue<BigNumberish>,
+      _gameId: PromiseOrValue<BigNumberish>,
+      columnIndex: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    makeMoveById(
-      _gameId: PromiseOrValue<BigNumberish>,
-      columnIndex: PromiseOrValue<BigNumberish>,
+    move(
+      _columnNumber: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
@@ -405,13 +402,13 @@ export interface ConnectFour extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     makeMove(
-      _columnNumber: PromiseOrValue<BigNumberish>,
+      _gameId: PromiseOrValue<BigNumberish>,
+      columnIndex: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    makeMoveById(
-      _gameId: PromiseOrValue<BigNumberish>,
-      columnIndex: PromiseOrValue<BigNumberish>,
+    move(
+      _columnNumber: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };

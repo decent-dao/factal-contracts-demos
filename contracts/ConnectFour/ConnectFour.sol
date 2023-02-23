@@ -88,7 +88,7 @@ contract ConnectFour {
 
     /**
      * Abandons the singleton game of msg.sender, if it exists.
-     * The game will still continue to be playable via makeMoveById,
+     * The game will still continue to be playable via makeMove,
      * just not makeMove.
      */
     function abandonCurrentGame() external {
@@ -102,7 +102,7 @@ contract ConnectFour {
      * @param _gameId id of game
      * @param columnIndex selected column for move, starting at 0
      */
-    function makeMoveById(
+    function makeMove(
         uint8 _gameId,
         uint8 columnIndex
     ) public gameOver(_gameId) validColumn(columnIndex) {
@@ -151,10 +151,10 @@ contract ConnectFour {
      * @notice caller plays a turn in their current game
      * @param _columnNumber selected column for move, starting at 1
      */
-    function makeMove(uint _columnNumber) external {
+    function move(uint _columnNumber) external {
         uint id = getGameIdFromAddress[msg.sender];
         require(id != 0, "Not currently playing.");
-        makeMoveById(uint8(id), uint8(_columnNumber - 1));
+        makeMove(uint8(id), uint8(_columnNumber - 1));
     }
 
     function setGameIdFromAddress(Game memory _game, uint _gameId) private {
